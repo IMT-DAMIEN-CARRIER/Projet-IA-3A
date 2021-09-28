@@ -2,7 +2,7 @@
 
 ---
 ```
-Damien Carrier - Clément Savinaud
+Léon Bousquet - Damien Carrier - Arthur Duca - Clément Savinaud
 INFRES 12
 ```
 
