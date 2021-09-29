@@ -3,4 +3,4 @@ FROM bitnami/pytorch:latest
 
 WORKDIR /opt/app/
 
-RUN pip install --no-cache-dir torchvision
+RUN pip install --no-cache-dir torchvision matplotlib numpy
