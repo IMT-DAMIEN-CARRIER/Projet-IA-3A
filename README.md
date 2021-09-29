@@ -14,7 +14,7 @@ Installation de [docker](https://docs.docker.com/get-docker/) sur votre machine.
 
 ## Lancement du projet : 
 
-* Build du projet : `docker build . -t projet_ia`
-
-* Run du projet : `docker run -p 1111:1111 --name projet_ia -d projet_ia`
-* Observer les résultats : `docker logs -f projet_ia`
+* Build l'image du projet : `docker build . -t projet_ia`
+* Run du projet : `docker-compose up -d`
+* Rentrer dans le container pour exectuer le projet : `docker run -it projet_ia bash`
+* Lancer le projet `python app/[file.py]`

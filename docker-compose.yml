@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  project:
+    image: projet_ia:latest
+    volumes:
+      - ./app:/opt/app/
+    container_name: projet_ia
+volumes:
+  projet_ia:
