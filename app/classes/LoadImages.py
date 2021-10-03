@@ -3,7 +3,6 @@ import numpy as np
 
 ## FROM ##
 from torch.utils.data import Dataset
-from torch.utils.data.dataloader import DataLoader  
 
 class LoadImages(Dataset):
     def __init__(self, transformed_dataset_path: str, original_dataset_path: str) -> None:
