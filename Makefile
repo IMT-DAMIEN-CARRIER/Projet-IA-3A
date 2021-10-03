@@ -9,7 +9,6 @@ build:
 
 run:
 	docker run --name ${CONTAINER_NAME} -v ${CURRENT_DIR}:/opt/app -it ${IMAGE_NAME}:latest bash
-	#docker run --name ${CONTAINER_NAME} -v ${CURRENT_DIR}:/opt/app -it -m="8g" --memory-swap="8g" --cpus="6" ${IMAGE_NAME}:latest bash
 
 clear: down remove-container remove-image
 

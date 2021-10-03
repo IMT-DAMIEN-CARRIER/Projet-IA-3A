@@ -14,7 +14,6 @@ class DecrypterModel(torch.nn.Module):
                                                       torch.nn.Dropout(p=0.5),
                                                       torch.nn.Linear(in_features=4096, out_features=d_out, bias=True)
                                                       ])
-        print(self.model)
 
     def forward(self, x):
         return self.model(x)
