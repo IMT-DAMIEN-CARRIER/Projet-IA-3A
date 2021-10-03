@@ -10,13 +10,10 @@ def train_optim(model, trainloader, testloader, epochs, log_frequency, device, l
     loss_fn = torch.nn.CrossEntropyLoss(reduction='mean')
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-    print(range(epochs))
-
     for t in range(epochs):
         model.train()  # we specify that we are training the model
 
         # At each epoch, the training set will be processed as a set of batches
-        print(enumerate(trainloader))
 
         for batch_id, batch in enumerate(trainloader):
             images, labels = batch
