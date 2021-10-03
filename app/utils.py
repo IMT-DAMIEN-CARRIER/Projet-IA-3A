@@ -51,3 +51,7 @@ def train_optim(model, data_loader, epochs, log_frequency, device, learning_rate
             correct += (predicted == labels).sum().item()
         
         print("[validation] accuracy: {:.3f}%\n".format(100 * correct / total))
+
+
+def eval_metric(img, pred):
+   return torch.abs(img - pred).sum() 
