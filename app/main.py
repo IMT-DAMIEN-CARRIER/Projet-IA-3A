@@ -37,8 +37,8 @@ train_loader = loadData("dataset/1A/train_1A_tiny.npy", "dataset/original/train_
 #test_loader = loadData("dataset/1A/test_1A.npy", "dataset/original/test_original.npy")
 # batch shape : (64, 3, 96, 96)
 
-# train, test = iter(train_loader).next()
-# print(train.shape)
+train, test = iter(train_loader).next()
+print(train.shape)
 # print(test.shape)
 
 

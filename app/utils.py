@@ -7,7 +7,7 @@ def train_optim(model, trainloader, testloader, epochs, log_frequency, device, l
     # Multiclass classification setting, we use cross-entropy
     # note that this implementation requires the logits as input
     # logits: values prior softmax transformation
-    loss_fn = torch.nn.CrossEntropyLoss(reduction='mean')
+    loss_fn = torch.nn.MSELoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     for t in range(epochs):
