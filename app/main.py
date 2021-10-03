@@ -30,15 +30,16 @@ def loadData(train_path: str, train_original_path: str):
 
 D_out = 10     # output dimension
 
-data_loader = loadData("dataset/1A/train_1A_tiny.npy","dataset/original/train_original_tiny.npy")
+train_loader = loadData("dataset/1A/train_1A_tiny.npy","dataset/original/train_original_tiny.npy")
+
 # batch shape : (64, 3, 96, 96)
 
-train, test = iter(data_loader).next()
+train, test = iter(train_loader).next()
 print(train.shape)
 print(test.shape)
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-model = DecrypterModel(D_out)
+model = DecrypterModel(d_out=3*96*96)
 
-train_optim(model, data_loader, epochs=1, log_frequency=60, device=device)
+train_optim(model, train_loader, epochs=1, log_frequency=1, device=device)
