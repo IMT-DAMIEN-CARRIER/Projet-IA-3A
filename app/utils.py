@@ -1,8 +1,9 @@
 import torch
 
+
 ## Utils functions ##
 def train_optim(model, trainloader, testloader, epochs, log_frequency, device, learning_rate=1e-4):
-    model.to(device) # we make sure the model is on the proper device
+    model.to(device)  # we make sure the model is on the proper device
 
     # Multiclass classification setting, we use cross-entropy
     # note that this implementation requires the logits as input
@@ -29,21 +30,23 @@ def train_optim(model, trainloader, testloader, epochs, log_frequency, device, l
             optimizer.zero_grad()  # clear the gradient before backward
             loss.backward()  # update the gradient
             optimizer.step()  # update the model parameters using the gradient
+            break
 
         # Model evaluation after each step computing the accuracy
         model.eval()
         total = 0
         correct = 0
         for batch_id, batch in enumerate(testloader):
-            images , labels = batch
-            images , labels = images.to(device), labels.to(device)
-            y_pred = model(images) # forward computes the logits
-            sf_y_pred = torch.nn.Softmax(dim=1)(y_pred) # softmax to obtain the probability distribution
-            _, predicted = torch.max(sf_y_pred , 1)     # decision rule, we select the max
-            
+            images, labels = batch
+            images, labels = images.to(device), labels.to(device)
+
+            y_pred = model(images)  # forward computes the logits
+            sf_y_pred = torch.nn.Softmax(dim=1)(y_pred)  # softmax to obtain the probability distribution
+            _, predicted = torch.max(sf_y_pred, 1)  # decision rule, we select the max
+
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
-        
+
         print("[validation] accuracy: {:.3f}%\n".format(100 * correct / total))
 
 

@@ -34,15 +34,15 @@ torch.manual_seed(1234)
 D_out = 3*96*96     # output dimension
 
 train_loader = loadData("dataset/1A/train_1A_tiny.npy", "dataset/original/train_original_tiny.npy")
-#test_loader = loadData("dataset/1A/test_1A.npy", "dataset/original/test_original.npy")
+test_loader = loadData("dataset/1A/test_1A.npy", "dataset/original/test_original.npy")
 # batch shape : (64, 3, 96, 96)
 
-train, test = iter(train_loader).next()
-print(train.shape)
+#train, test = iter(train_loader).next()
+#print(train.shape)
 # print(test.shape)
 
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model = DecrypterModel(D_out)
 
-train_optim(model, train_loader, None, epochs=1, log_frequency=1, device=device)
+train_optim(model, train_loader, test_loader, epochs=1, log_frequency=1, device=device)
