@@ -1,9 +1,10 @@
 import torch
 import matplotlib.pyplot as plt
 
+
 ## Utils functions ##
 def train_optim(model, trainloader, testloader, epochs, log_frequency, device, learning_rate=1e-4):
-    model.to(device) # we make sure the model is on the proper device
+    model.to(device)  # we make sure the model is on the proper device
 
     # Multiclass classification setting, we use cross-entropy
     # note that this implementation requires the logits as input
