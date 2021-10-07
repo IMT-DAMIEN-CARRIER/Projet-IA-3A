@@ -2,13 +2,13 @@
 from models.DecrypterModel import DecrypterModel
 from models.UnetModel import UNet
 import torch
-#import matplotlib.pyplot as plt
 import numpy as np
 
 ## FROM ##
 from classes.LoadImages import *
 from utils import *
 from torch.utils.data.dataloader import DataLoader
+from torchvision import models
 
 
 ## Functions ##
@@ -27,7 +27,20 @@ test_loader = loadData("dataset/1A/test_1A.npy", "dataset/original/test_original
 # batch shape : (64, 3, 96, 96)
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
 #model = DecrypterModel(D_out)
+
+# model = models.resnet18()
+# model.fc = torch.nn.Linear(512, D_out)
+# model = models.resnet50()
+# model.fc = torch.nn.Sequential(
+#     torch.nn.Linear(2048, 1024),
+#     torch.nn.ReLU(),
+#     torch.nn.Linear(1024,512),
+#     torch.nn.ReLU(),
+#     torch.nn.Linear(512, 10)
+# )
+
 model = UNet(3,3,False)
 
 model.load_state_dict(torch.load("trained_model/unet_epoch9"))

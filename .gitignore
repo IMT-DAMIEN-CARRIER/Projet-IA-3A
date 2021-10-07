@@ -2,5 +2,6 @@
 .DS_Store
 dataset
 images
+app/trained_model
 Probleme_-_Projet_IA.md
 trained_model
