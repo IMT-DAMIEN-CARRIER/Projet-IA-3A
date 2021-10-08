@@ -87,7 +87,7 @@ def evaluate_model(model, testloader, device, epoch=0):
 
     #break
     
-    file = open('app/trained_model/log_model.txt', 'a')
+    file = open('app/trained_model/log_model_1B.txt', 'a')
     file.write("--------------- EPOCH "+str(epoch+1)+" ---------------\n")
     file.write("Average delta : "+str(int(total/index)) + "\n")
     file.write("Delta max : "+str(int(delta_max)) + "\n")

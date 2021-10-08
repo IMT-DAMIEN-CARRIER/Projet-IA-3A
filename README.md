@@ -27,5 +27,3 @@ Installation de [docker](https://docs.docker.com/get-docker/) sur votre machine.
 * Création d'un dossier images qui permettra d'enregistrer les images si besoin. Ensuite décommenter la partie liée à l'enregistrement de ces images dans le fichier `app/utils.py`
 
 Par la suite, vous pourrez utiliser les modèles déjà enregistrer dans `app/trained_model` si besoin pour tester nos résultats.
-
-## Projet

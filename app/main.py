@@ -1,4 +1,4 @@
-## IMPORTS ##
+## IMPORTS ##
 from models.UnetModel import UNet
 import torch
 import numpy as np
@@ -9,8 +9,6 @@ from utils import *
 from torch.utils.data.dataloader import DataLoader
 from torchvision import models
 
-
-## Functions ##
 
 def loadData(train_path: str, train_original_path: str):
     batch_size = 4
