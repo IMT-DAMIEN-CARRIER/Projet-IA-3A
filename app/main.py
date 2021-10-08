@@ -1,5 +1,4 @@
 ## IMPORTS ##
-from models.DecrypterModel import DecrypterModel
 from models.UnetModel import UNet
 import torch
 import numpy as np
@@ -22,13 +21,16 @@ torch.manual_seed(1234)
 
 D_out = 3*96*96     # output dimension
 
-train_loader = loadData("dataset/1A/train_1A.npy", "dataset/original/train_original.npy")
-test_loader = loadData("dataset/1A/test_1A.npy", "dataset/original/test_original.npy")
+# train_loader = loadData("dataset/1A/train_1A_tiny.npy", "dataset/original/train_original_tiny.npy")
+# test_loader = loadData("dataset/1A/test_1A.npy", "dataset/original/test_original.npy")
+train_loader = loadData("dataset/1B/train_1B.npy", "dataset/original/train_original.npy")
+test_loader = loadData("dataset/1B/test_1B.npy", "dataset/original/test_original.npy")
+# train_loader = loadData("dataset/2/train_2_tiny.npy", "dataset/original/train_original_tiny.npy")
+# test_loader = loadData("dataset/2/test_2.npy", "dataset/original/test_original.npy")
+print(len(test_loader))
 # batch shape : (64, 3, 96, 96)
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-#model = DecrypterModel(D_out)
 
 # model = models.resnet18()
 # model.fc = torch.nn.Linear(512, D_out)
@@ -43,11 +45,11 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 model = UNet(3,3,False)
 
-model.load_state_dict(torch.load("trained_model/unet_epoch9"))
+model.load_state_dict(torch.load("app/trained_model/unet_1B_epoch5"))
 
 #freeze_model(model)
-evaluate_model(model, test_loader, device)
+#evaluate_model(model, test_loader, device)
 
-#for i in range(9,10):
-#    train_optim(model, train_loader, test_loader, epochs=1, log_frequency=1, device=device)
-#    torch.save(model.state_dict(), "trained_model/unet_epoch" + str(i))
+for i in range(6,11):
+   train_optim(model, train_loader, test_loader, epochs=1, log_frequency=1, device=device)
+   torch.save(model.state_dict(), "app/trained_model/unet_1B_epoch" + str(i))

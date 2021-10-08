@@ -56,35 +56,38 @@ def evaluate_model(model, testloader, device, epoch=0):
         # Metrique d'évaluation du model
         evaluation = eval_metric(labels, y_pred)
         total += evaluation
-        print("Delta : "+str(evaluation))
+        #print("Delta : "+str(evaluation))
 
         if (evaluation > delta_max) :
             delta_max = evaluation
         if (evaluation < delta_min) :
             delta_min = evaluation
 
-        # Sauvegarde de l'image déterioré
-        #plt.figure(1)
-        #plt.imshow(images[0].permute(1, 2, 0))
-        #plt.show()
-        #plt.savefig('images/base_'+str(index))
+        # a commenter si pas besoin de print les images.
+        if index == 1 or index == 50 or index == 100 or index == 150 or index == 200 or index == 250:
+            print('creation unet_1B_index_' + str(index) + '_epoch_' + str(epoch+5))
+            # Sauvegarde de l'image déterioré
+            plt.figure(1)
+            plt.imshow(images[0].permute(1, 2, 0))
+            plt.show()
+            plt.savefig('images/unet_1B/base_' + str(index) + '_' + str(epoch+5))
 
-        # Sauvegarde de l'image attendu
-        #plt.figure(1)
-        #plt.imshow(labels[0].permute(1, 2, 0))
-        #plt.show()
-        #plt.savefig('images/attendu_'+str(index))
+            # Sauvegarde de l'image attendu
+            plt.figure(1)
+            plt.imshow(labels[0].permute(1, 2, 0))
+            plt.show()
+            plt.savefig('images/unet_1B/attendu_' + str(index) + '_' + str(epoch+5))
 
-        # Sauvegarde de notre prediction
-        #plt.figure(1)
-        #plt.imshow(y_pred[0].permute(1, 2, 0))
-        #plt.show()
-        #plt.savefig('images/prediction_'+str(index))
+            # Sauvegarde de notre prediction
+            plt.figure(1)
+            plt.imshow(y_pred[0].permute(1, 2, 0))
+            plt.show()
+            plt.savefig('images/unet_1B/prediction_' + str(index) + '_' + str(epoch+5))
         index += 1
+
+    #break
     
-        #break
-    
-    file = open('trained_model/log_model.txt', 'a')
+    file = open('app/trained_model/log_model.txt', 'a')
     file.write("--------------- EPOCH "+str(epoch+1)+" ---------------\n")
     file.write("Average delta : "+str(int(total/index)) + "\n")
     file.write("Delta max : "+str(int(delta_max)) + "\n")
