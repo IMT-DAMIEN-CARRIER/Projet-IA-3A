@@ -17,6 +17,8 @@ Installation de [docker](https://docs.docker.com/get-docker/) sur votre machine.
 * Lancement du container : `make up`
 * Exécution du projet : `python app/main.py`
 * Nettoyage du projet **(A faire uniquement en cas de netttoyage de fin)** : `make clear`
+* Suppression du conteneur : `make remove-container`
+* Suppression de l'image associée : `make remove-image`
 
 ## Informations supplémentaire pour l'utilisation du projet :
 À la racine du projet :
