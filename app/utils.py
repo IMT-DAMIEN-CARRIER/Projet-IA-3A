@@ -63,23 +63,23 @@ def evaluate_model(model, testloader, device, epoch=0):
         if (evaluation < delta_min) :
             delta_min = evaluation
 
-        # Sauvegarde de l'image déterioré
-        #plt.figure(1)
-        #plt.imshow(images[0].permute(1, 2, 0))
-        #plt.show()
-        #plt.savefig('images/base_'+str(index))
+            # Sauvegarde de l'image déterioré
+            plt.figure(1)
+            plt.imshow(images[0].permute(1, 2, 0))
+            plt.show()
+            plt.savefig('images/base_'+str(index))
 
-        # Sauvegarde de l'image attendu
-        #plt.figure(1)
-        #plt.imshow(labels[0].permute(1, 2, 0))
-        #plt.show()
-        #plt.savefig('images/attendu_'+str(index))
+            # Sauvegarde de l'image attendu
+            plt.figure(1)
+            plt.imshow(labels[0].permute(1, 2, 0))
+            plt.show()
+            plt.savefig('images/attendu_'+str(index))
 
-        # Sauvegarde de notre prediction
-        #plt.figure(1)
-        #plt.imshow(y_pred[0].permute(1, 2, 0))
-        #plt.show()
-        #plt.savefig('images/prediction_'+str(index))
+            # Sauvegarde de notre prediction
+            plt.figure(1)
+            plt.imshow(y_pred[0].permute(1, 2, 0))
+            plt.show()
+            plt.savefig('images/prediction_'+str(index))
         index += 1
     
         #break
