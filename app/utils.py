@@ -35,7 +35,7 @@ def train_optim(model, trainloader, testloader, epochs, log_frequency, device, l
             optimizer.zero_grad()  # clear the gradient before backward
             loss.backward()  # update the gradient
             optimizer.step()  # update the model parameters using the gradient
-            # break
+            break
 
         # Model evaluation after each step computing the accuracy
         evaluate_model(model, testloader, device, t)
@@ -47,7 +47,6 @@ def evaluate_model(model, testloader, device, epoch=0):
     index = 0
     delta_max = 0
     delta_min = sys.maxsize
-    epoch_i = epoch
 
     for batch_id, batch in enumerate(testloader):
         images , labels = batch
@@ -61,7 +60,6 @@ def evaluate_model(model, testloader, device, epoch=0):
         # Metrique d'évaluation du model
         evaluation = eval_metric(labels, y_pred)
         total += evaluation
-        #print("Delta : "+str(evaluation))
 
         if (evaluation > delta_max) :
             delta_max = evaluation
@@ -69,29 +67,29 @@ def evaluate_model(model, testloader, device, epoch=0):
             delta_min = evaluation
 
             # A decommenter si vous souhaitez print les meilleures images
-            # print('creation unet_1B_index_' + str(index) + '_epoch_' + str(epoch_i))
+            # print('creation unet_index_' + str(index) + '_epoch_' + str(epoch))
             # # Sauvegarde de l'image déterioré
             # plt.figure(1)
             # plt.imshow(images[0].permute(1, 2, 0))
             # plt.show()
-            # plt.savefig('images/unet_1B/base_' + str(index) + '_' + str(epoch_i))
+            # plt.savefig('images/unet/base_' + str(index) + '_' + str(epoch))
             #
             # # Sauvegarde de l'image attendu
             # plt.figure(1)
             # plt.imshow(labels[0].permute(1, 2, 0))
             # plt.show()
-            # plt.savefig('images/unet_1B/attendu_' + str(index) + '_' + str(epoch_i))
+            # plt.savefig('images/unet/attendu_' + str(index) + '_' + str(epoch))
             #
             # # Sauvegarde de notre prediction
             # plt.figure(1)
             # plt.imshow(y_pred[0].permute(1, 2, 0))
             # plt.show()
-            # plt.savefig('images/unet_1B/prediction_' + str(index) + '_' + str(epoch))
+            # plt.savefig('images/unet/prediction_' + str(index) + '_' + str(epoch))
 
         index += 1
 
     # A modifier en fonction du datatset.
-    file = open('app/trained_model/log_model_1A.txt', 'a')
+    file = open('app/trained_model/log_model.txt', 'a')
     file.write("--------------- EPOCH "+str(epoch)+" ---------------\n")
     file.write("Average delta : "+str(int(total/index)) + "\n")
     file.write("Delta max : "+str(int(delta_max)) + "\n")
