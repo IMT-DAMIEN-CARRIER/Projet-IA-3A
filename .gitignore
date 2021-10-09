@@ -3,3 +3,7 @@
 dataset
 images
 Probleme_-_Projet_IA.md
+trained_model
+app/__pycache__/
+app/classes/__pycache__/
+app/models/__pycache__/
