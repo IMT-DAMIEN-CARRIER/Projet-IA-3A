@@ -4,13 +4,12 @@ import torch
 import numpy as np
 
 ## FROM ##
-from classes.LoadImages import *
 from utils import *
-from torch.utils.data.dataloader import DataLoader
-from torchvision import models
 
 def train_model(model, epoch) :
     train_optim(model, train_loader, test_loader, epochs=epoch, log_frequency=1, device=device)
+
+    # A modifier pour charger le modèle de votre choix.
     torch.save(model.state_dict(), "app/trained_model/my_model")
 
 def loadDataTest(train_path: str, train_original_path: str):

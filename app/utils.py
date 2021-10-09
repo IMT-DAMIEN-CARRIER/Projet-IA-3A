@@ -2,6 +2,10 @@ import torch
 import matplotlib.pyplot as plt
 import sys
 
+from classes.LoadImages import *
+from torch.utils.data.dataloader import DataLoader
+from torchvision import models
+
 ## Utils functions ##
 def train_optim(model, trainloader, testloader, epochs, log_frequency, device, learning_rate=1e-4):
     model.to(device)  # we make sure the model is on the proper device
